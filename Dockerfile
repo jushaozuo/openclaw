@@ -4,4 +4,4 @@ WORKDIR /app
 COPY . .
 RUN pnpm install
 RUN pnpm build
-CMD ["pnpm", "start"]
+CMD ["node", "dist/index.js", "gateway", "--force"]
