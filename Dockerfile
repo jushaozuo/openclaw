@@ -5,4 +5,4 @@ WORKDIR /app
 COPY . .
 RUN pnpm install
 RUN pnpm build
-CMD ["node", "dist/index.js", "gateway", "--allow-unconfigured"]
+CMD ["node", "dist/index.js", "gateway", "--allow-unconfigured", "--channel", "tg"]
