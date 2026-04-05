@@ -5,4 +5,6 @@ WORKDIR /app
 COPY . .
 RUN pnpm install
 RUN pnpm build
-CMD ["node", "dist/index.js", "gateway", "--allow-unconfigured"]
+ENV DEFAULT_MODEL=openai/deepseek-chat
+ENV OPENAI_API_MODEL=deepseek-chat
+CMD ["node", "dist/index.js", "gateway", "--allow-unconfigured", "--config-path", "/tmp/config.json"]
