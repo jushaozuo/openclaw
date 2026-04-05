@@ -1,7 +1,8 @@
 FROM node:22-slim
 RUN npm install -g pnpm
+RUN apt-get update && apt-get install -y psmisc lsof procps && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . .
 RUN pnpm install
 RUN pnpm build
-CMD ["node", "dist/index.js", "gateway", "--force"]
+CMD ["node", "dist/index.js", "gateway"]
