@@ -5,10 +5,9 @@ WORKDIR /app
 COPY . .
 RUN pnpm install
 RUN pnpm build
-RUN mkdir -p /root/.openclaw && \
-    echo '{"agent":{"model":"openai/deepseek-chat"},"gateway":{"auth":{"token":"8323607608"}},"telegram":{"enabled":true,"token":"8755126603:AAEvhaDa9PjET1GahOzjdlL2054p1Jyta-M"},"plugins":{"entries":{}}}' > /root/.openclaw/openclaw.json
-
 ENV DEFAULT_MODEL=openai/deepseek-chat
 ENV OPENAI_API_MODEL=deepseek-chat
-
-CMD ["node", "dist/index.js", "gateway", "--allow-unconfigured"]
+ENV GATEWAY_AUTH_TOKEN=8323607608
+ENV TELEGRAM_ENABLED=true
+ENV TELEGRAM_TOKEN=8755126603:AAEvhaDa9PjET1GahOzjdlL2054p1Jyta-M
+CMD ["node", "dist/index.js", "gateway", "--agent-model", "openai/deepseek-chat", "--allow-unconfigured"]
